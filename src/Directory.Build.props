@@ -5,6 +5,8 @@
 		<LangVersion>14</LangVersion>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>true</ImplicitUsings>
+		<Platforms>x64</Platforms>
+		<PlatformTarget>x64</PlatformTarget>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net10.0'">
