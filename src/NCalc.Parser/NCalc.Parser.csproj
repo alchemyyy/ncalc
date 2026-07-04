@@ -9,6 +9,10 @@
         <AssemblyOriginatorKeyFile>../../NCalc.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(DisableParlotParserCompilation)' == 'true' or '$(Configuration)' == 'Release' or '$(Configuration)' == 'ReleaseWithDebugging'">
+        <DefineConstants>$(DefineConstants);DISABLE_PARLOT_PARSER_COMPILATION</DefineConstants>
+    </PropertyGroup>
+
     <ItemGroup>
       <ProjectReference Include="..\NCalc.Domain\NCalc.Domain.csproj" />
     </ItemGroup>

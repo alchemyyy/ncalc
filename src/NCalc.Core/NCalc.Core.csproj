@@ -37,10 +37,13 @@
     <ItemGroup>
         <PackageReference Include="ExtendedNumerics.BigDecimal" Version="3003.0.0.346" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.7" />
-        <PackageReference Include="Parlot" Version="1.5.7" />
+        <PackageReference Include="Parlot" Version="1.5.7" Condition="'$(DisableParlotParserCompilation)' != 'true' and '$(Configuration)' != 'Release' and '$(Configuration)' != 'ReleaseWithDebugging'" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\NCalc.Parser\NCalc.Parser.csproj" />
+      <ProjectReference Include="..\NCalc.Parser\NCalc.Parser.csproj">
+        <SetTargetFramework Condition="'$(DisableParlotParserCompilation)' == 'true' or '$(Configuration)' == 'Release' or '$(Configuration)' == 'ReleaseWithDebugging'">TargetFramework=$(TargetFramework);DisableParlotParserCompilation=true</SetTargetFramework>
+        <GlobalPropertiesToRemove>PublishAot;PublishSingleFile;SelfContained;PublishTrimmed;RuntimeIdentifier;RuntimeIdentifiers;OutputPath;OutDir;PublishDir</GlobalPropertiesToRemove>
+      </ProjectReference>
       <ProjectReference Include="..\NCalc.SourceGenerators\NCalc.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" PrivateAssets="all" />
     </ItemGroup>
 </Project>

@@ -567,9 +567,13 @@ public static class LogicalExpressionParser
         var expressionParser = expression.AndSkip(ZeroOrMany(Literals.WhiteSpace(true))).Eof()
             .ElseError(InvalidTokenMessage);
 
+#if DISABLE_PARLOT_PARSER_COMPILATION
+        return expressionParser;
+#else
         AppContext.TryGetSwitch("NCalc.EnableParlotParserCompilation", out var enableParserCompilation);
 
         return enableParserCompilation ? expressionParser.Compile() : expressionParser;
+#endif
     }
 
     private static LogicalExpression ParseBinaryExpression((LogicalExpression, IReadOnlyList<(BinaryExpressionType, LogicalExpression)>) x)
