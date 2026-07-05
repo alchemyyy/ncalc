@@ -7,6 +7,9 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <Platforms Condition="'$(Platforms)' == ''">x64</Platforms>
+    <PlatformTarget Condition="'$(PlatformTarget)' == ''">x64</PlatformTarget>
+    <Platform Condition="'$(Platform)' == ''">x64</Platform>
   </PropertyGroup>
     
     <PropertyGroup>
